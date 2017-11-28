@@ -25,7 +25,7 @@ beforeAll(() => {
 
 describe('requestLogger()', () => {
   it('constructor should export a function', () => {
-    expect(requestLogger).toBeA('function');
+    expect(typeof requestLogger).toBe('function');
   });
   it('should handle basic GET requests', () => (
     request({uri, json: true})
@@ -34,7 +34,9 @@ describe('requestLogger()', () => {
       })
   ));
   it('should handle basic POST requests', () => (
-    request({method: 'POST', uri, json: true, body: {foo: 'bar'}})
+    request({
+      method: 'POST', uri, json: true, body: {foo: 'bar'}
+    })
       .then((res) => {
         expect(res).toEqual({ok: 1});
       })

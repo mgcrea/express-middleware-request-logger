@@ -20,7 +20,7 @@ export default function requestLoggerMiddleware({dest = './tmp/requests', clear 
     const date = Date.now();
     const kebabCasedUrl = kebabCase(req.originalUrl).substr(0, 30);
     const method = req.method.toLowerCase();
-    const end = res.end;
+    const {end} = res;
     res.end = (...args) => {
       fs.writeFileAsync(path.join(dest, `req-${method}-${kebabCasedUrl}-${date}-res.json`), args[0]);
       end.apply(res, args);
